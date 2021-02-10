@@ -1,0 +1,17 @@
+version: 4.0
+images:
+  nomad: https://releases.hashicorp.com/nomad/{{ version }}/nomad_{{ version }}_linux_amd64.zip
+
+services:
+  nomad:
+    chart: hashicorp.nomad
+    image: nomad:1.0.3
+    ports:
+      http: 4646
+      rpc: 4647
+      serf: 4648
+    config:
+      mode: server
+      region: "{{ .Env.NODE_REGION }}"
+      dc: "{{ .Env.NODE_DC }}"
+      node_class: "{{ .Env.NODE_ENV }}"
