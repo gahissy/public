@@ -1,0 +1,15 @@
+version: 4.1
+services:
+  service-2:
+    chart: java.springboot
+    image: /Volumes/STUDIO/SGABS/Dev/unibank-service-additional/unibank-service-additional/build/libs/unibank-service-additional-{{ version }}.jar
+    version: {{ version }}
+    ports:
+      http: 8090
+    config:
+      jar: unibank-service-additional-{{ version }}.jar
+      db_migration:
+        args:
+          db.migration.bootstrap: true
+      sizing: standard
+      profiles: "local,offline"
